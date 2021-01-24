@@ -22,8 +22,6 @@ def loginGet():
 def loginPost():
     login = request.form['login']
     password = request.form['password']
-    print(login)
-    print(password)
     admin = mongo.db.admin.find_one({"gmail":login, "password": password})
 
     #login_user(adminEmail)
@@ -35,4 +33,8 @@ def loginPost():
  
 @app.route('/ourStock', methods = ['GET'] )
 def ourStock():    
-    return render_template('base.html')
+    return render_template('home.html')
+
+@app.route('/logout', methods = ['GET'] )
+def logout():    
+    return render_template('home.html')
