@@ -23,13 +23,13 @@ def loginPost():
     login = request.form['login']
     password = request.form['password']
     admin = mongo.db.admin.find_one({"gmail":login, "password": password})
-
+    #session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
     #login_user(adminEmail)
 
     if isEmpty(admin): 
         return redirect('/')
     else :
-        session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
+        
         return redirect('/ourStock')
  
 
@@ -41,9 +41,9 @@ def logout():
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
-
-    nomAdmin = session['administrateur']
-    return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
+    
+    #nomAdmin = session['administrateur']
+    return render_template('home.html', produits = produits, admins = admins )
 
 
 

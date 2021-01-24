@@ -57,18 +57,18 @@
 
     <div class="row content">
 
-        <h1 class="sec04">Gestion des types de véhicules</h1>
+        <h1 class="sec04">Gestion des produits</h1>
 
 
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Nos <b>Types de Véhicules</b></h2>
+                        <h2>Nos <b>Produits</b></h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="#addtype" class="btn btn-success" data-toggle="modal"><i
-                                class="material-icons">&#xE147;</i> <span>Ajouter un type</span></a>
+                                class="material-icons">&#xE147;</i> <span>Ajouter un produit</span></a>
                     </div>
                 </div>
             </div>
@@ -76,17 +76,29 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Marque</th>
-                        <th>Modèle</th>
-                        <th>Carburant</th>
-                        <th>Couleur</th>
-                        <th>Climatisation</th>
-                        <th>Prix par jours(MAD)</th>
-                        <th>Actions</th>
+                        <th>categorie</th>
+                        <th>nom</th>
+                        <th>prix</th>
+                        <th>Qte</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {% for produit in produits %}
+                    <tr>
+                        <td>{{produit['_id']}}</td>
+                        <td>{{produit['categorie']}}</td>
+                        <td>{{produit['nomProduit']}}</td>
+                        <td>{{produit['prix']}}</td>
+                        <td>{{produit['Qte']}}</td>
+                        <td>
+                            <a href="#edittype" class="edit" data-toggle="modal"><i class="material-icons"
+                                    data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                            <a href="#deletetype" class="delete" data-toggle="modal"><i class="material-icons"
+                                    data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -246,11 +258,25 @@
                         <th>Prénom</th>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {% for admin in admins %}
+                    <tr>
+                        <td>{{admin['_id']}}</td>
+                        <td>{{admin['prenom']}}</td>
+                        <td>{{admin['nom']}}</td>
+                        <td>{{admin['gmail']}}</td>
+                        <td>
+                            {% if session['id'] == admin['id']: %}
+                            <a href="#editadmin" class="edit" data-toggle="modal"><i class="material-icons"
+                                    data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                            <a href="#deleteadmin" class="delete" data-toggle="modal"><i class="material-icons"
+                                    data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
