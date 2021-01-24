@@ -34,18 +34,14 @@ def loginPost():
     login = request.form['login']
     password = request.form['password']
     admin = mongo.db.admin.find_one({"gmail":login, "password": password})
-    #session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
+
     #login_user(adminEmail)
 
     if isEmpty(admin): 
         return redirect('/')
     else :
-<<<<<<< HEAD
-        
-=======
         session["prenom"] = admin["prenom"]
         session["nom"] = admin["nom"]
->>>>>>> d053e8c1926ae7502a59b1b1be70a6772fc535d7
         return redirect('/ourStock')
  
 
@@ -57,17 +53,11 @@ def logout():
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
-<<<<<<< HEAD
-    
-    #nomAdmin = session['administrateur']
-    return render_template('home.html', produits = produits, admins = admins )
-=======
     if "nom" and "prenom" in session:
         nomAdmin = session["nom"] + " " + session["prenom"]
     else:
         nomAdmin = "Admin"
     return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
->>>>>>> d053e8c1926ae7502a59b1b1be70a6772fc535d7
 
 
 
@@ -76,8 +66,25 @@ def ourStock():
 def addproduit():
 	if request.method == 'POST':
 
-	    return True
+	    id  = getLastIdProduct() + 1
+        categorie = request.form['categorie']
+        nomProduit = request.form['nomProduit']
+        img = request.form['img']
+        Qte = request.form['Qte']
+        prix = request.form['prix']
+        description = request.form['description']
 
+        mongo.db.produit.insert_one({
+            "_id": id,
+            "categorie": categorie,
+            "nomProduit": nomProduit,
+            "img" : img,
+            "Qte": Qte,
+            "prix": prix,
+            "description" : description
+        })
+
+    redirect('/ourStock')
 
 if __name__ == "__main__" :
     app.run(debug=True)
