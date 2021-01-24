@@ -32,20 +32,19 @@ def loginPost():
         session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
         return redirect('/ourStock')
  
-@app.route('/ourStock', methods = ['GET'] )
-<<<<<<< HEAD
-def ourStock():    
-    return render_template('home.html')
 
 @app.route('/logout', methods = ['GET'] )
 def logout():    
-    return render_template('home.html')
-=======
+    return render_template('login.html')
+
+@app.route('/ourStock', methods = ['GET'] )
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
 
     nomAdmin = session['administrateur']
-    return render_template('base.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
+    return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
 
->>>>>>> 12fbc4bcab76ddc2fbd7e538ac099c4f3e582376
+
+
+
