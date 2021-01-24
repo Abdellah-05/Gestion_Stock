@@ -61,18 +61,18 @@ def ourStock():
 
 
 
-#add produit----------------------------------------------------
+#----------------------------------------------------  add produit
 @app.route('/addproduit', methods = ['POST'])
 def addproduit():
 	if request.method == 'POST':
 
 	    id  = getLastIdProduct() + 1
-        categorie = request.form['categorie']
-        nomProduit = request.form['nomProduit']
-        img = request.form['img']
-        Qte = request.form['Qte']
-        prix = request.form['prix']
-        description = request.form['description']
+        categorie = request.form.get('categorie')
+        nomProduit = request.form.get('nomProduit')
+        img = request.form.get('img')
+        Qte = request.form.get('Qte')
+        prix = request.form.get('prix')
+        description = request.form.get('description')
 
         mongo.db.produit.insert_one({
             "_id": id,
@@ -85,6 +85,7 @@ def addproduit():
         })
 
     redirect('/ourStock')
+
 
 if __name__ == "__main__" :
     app.run(debug=True)
