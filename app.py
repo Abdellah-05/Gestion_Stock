@@ -14,6 +14,16 @@ def isEmpty(word):
         return False
     return True
 
+def getLastIdProduct():
+    products, d = mongo.db.produit.find(), {}
+    for p in products:
+        pass
+    d = p
+    return int(d["_id"])
+    
+
+
+
 
 @app.route('/', methods = ['GET'] )
 def loginGet():    
@@ -24,7 +34,7 @@ def loginPost():
     login = request.form['login']
     password = request.form['password']
     admin = mongo.db.admin.find_one({"gmail":login, "password": password})
-    #session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
+
     #login_user(adminEmail)
 
     if isEmpty(admin): 
@@ -44,7 +54,6 @@ def logout():
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
-
     if "nom" and "prenom" in session:
         nomAdmin = session["nom"] + " " + session["prenom"]
     else:
@@ -53,6 +62,31 @@ def ourStock():
 
 
 
+#add produit----------------------------------------------------
+@app.route('/addproduit', methods = ['POST'])
+def addproduit():
+	if request.method == 'POST':
+
+	    id  = getLastIdProduct() + 1
+        categorie = request.form.get('categorie')
+        nomProduit = request.form.get('nomProduit')
+        img = request.form.get('img')
+        Qte = request.form.get('Qte')
+        prix = request.form.get('prix')
+        description = request.form.get('description')
+        
+print(id,categorie,nomProduit,img,Qte,prix,description)
+        """mongo.db.produit.insert_one({
+            "_id": id,
+            "categorie": categorie,
+            "nomProduit": nomProduit,
+            "img" : img,
+            "Qte": Qte,
+            "prix": prix,
+            "description" : description
+        })"""
+
+    redirect('/ourStock')
 
 if __name__ == "__main__" :
     app.run(debug=True)
