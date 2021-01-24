@@ -14,6 +14,16 @@ def isEmpty(word):
         return False
     return True
 
+def getLastIdProduct():
+    products, d = mongo.db.produit.find(), {}
+    for p in products:
+        pass
+    d = p
+    return int(d["_id"])
+    
+
+
+
 
 @app.route('/', methods = ['GET'] )
 def loginGet():    
@@ -50,6 +60,13 @@ def ourStock():
     return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
 
 
+
+#add produit----------------------------------------------------
+@app.route('/addproduit', methods = ['POST'])
+def addproduit():
+	if request.method == 'POST':
+
+	    return True
 
 
 if __name__ == "__main__" :
