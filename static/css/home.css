@@ -166,7 +166,7 @@
   
   .hero {
     position: relative;
-    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../images/bg.jpg) no-repeat fixed;
+    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(/static/images/gestion_sck.jpg) no-repeat fixed;
     background-size: cover;
     background-position: 50%;
     background-position: center;

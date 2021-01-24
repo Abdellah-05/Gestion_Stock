@@ -30,12 +30,9 @@ def loginPost():
     if isEmpty(admin): 
         return redirect('/')
     else :
-<<<<<<< HEAD
         
-=======
         session["prenom"] = admin["prenom"]
         session["nom"] = admin["nom"]
->>>>>>> d053e8c1926ae7502a59b1b1be70a6772fc535d7
         return redirect('/ourStock')
  
 
@@ -47,17 +44,12 @@ def logout():
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
-<<<<<<< HEAD
-    
-    #nomAdmin = session['administrateur']
-    return render_template('home.html', produits = produits, admins = admins )
-=======
+
     if "nom" and "prenom" in session:
         nomAdmin = session["nom"] + " " + session["prenom"]
     else:
         nomAdmin = "Admin"
     return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
->>>>>>> d053e8c1926ae7502a59b1b1be70a6772fc535d7
 
 
 
