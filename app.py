@@ -31,8 +31,14 @@ def loginPost():
     if isEmpty(admin): 
         return redirect('/')
     else :
+        session['administrateur'] = admin["prenom"] + ' ' + admin["nom"]
         return redirect('/ourStock')
  
 @app.route('/ourStock', methods = ['GET'] )
-def ourStock():    
-    return render_template('base.html')
+def ourStock():
+    produits = mongo.db.produit.find()
+    admins = mongo.db.admin.find()
+
+    nomAdmin = session['administrateur']
+    return render_template('base.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
+
