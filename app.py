@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session , url_for
 #from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import datetime
 from flask_pymongo import PyMongo   # pip install Flask-PyMongo
@@ -63,30 +63,20 @@ def ourStock():
 
 
 #add produit----------------------------------------------------
-@app.route('/addproduit', methods = ['POST'])
+@app.route('/addproduit')
 def addproduit():
-	if request.method == 'POST':
-
-	    id  = getLastIdProduct() + 1
-        categorie = request.form.get('categorie')
-        nomProduit = request.form.get('nomProduit')
-        img = request.form.get('img')
-        Qte = request.form.get('Qte')
-        prix = request.form.get('prix')
-        description = request.form.get('description')
-        
-print(id,categorie,nomProduit,img,Qte,prix,description)
-        """mongo.db.produit.insert_one({
-            "_id": id,
-            "categorie": categorie,
-            "nomProduit": nomProduit,
-            "img" : img,
-            "Qte": Qte,
-            "prix": prix,
-            "description" : description
-        })"""
-
-    redirect('/ourStock')
+	
+    id  = getLastIdProduct() + 1
+    categorie = request.form.get('categorie')
+    nomProduit = request.form['nomProduit']
+    img = request.form['img']
+    Qte = request.form['Qte']
+    prix = request.form['prix']
+    description = request.form['description']
+    print(id,categorie,nomProduit,img,Qte,prix,description)
+    mongo.db.produit.insert_one({"_id": id, "categorie": categorie, "nomProduit": nomProduit, "img" : img, "Qte": Qte, "prix": prix, "description" : description})
+    return redirect('/ourStock')
+    
 
 if __name__ == "__main__" :
     app.run(debug=True)
