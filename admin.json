@@ -1,0 +1,13 @@
+[{
+  "_id": 1,
+  "nom": "ELAAROUB",
+  "prenom": "Abdellah",
+  "gmail": "abdouelaaroub@gmail.com",
+  "password": "Abdou_IDSD2"
+},{
+  "_id": 2,
+  "nom": "DAMOU",
+  "prenom": "Walid",
+  "gmail": "walid.damou.2015@gmail.com",
+  "password": "Walid_IDSD2"
+}]

@@ -15,13 +15,18 @@ def isEmpty(word):
     return True
 
 def getLastIdProduct():
-    products, d = mongo.db.produit.find(), {}
-    for p in products:
+    coll, d = mongo.db.produit.find(), {}
+    for p in coll:
         pass
     d = p
     return int(d["_id"])
-    
 
+def getLastIdAdmin():
+    coll, d = mongo.db.admin.find(), {}
+    for p in coll:
+        pass
+    d = p
+    return int(d["_id"])
 
 
 
@@ -90,11 +95,15 @@ def addproduit():
     return redirect('/ourStock')
 
 
-@app.route('/supProduit/<int:id>')
+@app.route('/supProduit/<int:id>', methods = ['POST'])
 def delProd(id) :
-    id = int(id)
-    mongo.db.produit.delete_one({"_id": id})
-    return redirect('/ourStock')
+     if request.method == 'POST':
+        idSelected = int(id)
+        ID = request.form.get("idpro")
+        ID = int(ID)
+        if idSelected == ID :
+            mongo.db.produit.delete_one({"_id": idSelected})
+        return redirect('/ourStock')
 
 @app.route('/editProduit/<int:id>', methods = ['POST'])
 def editProd(id) :
@@ -102,6 +111,8 @@ def editProd(id) :
         idSelected = int(id)
         ID = request.form.get("id")
         ID = int(ID)
+        print(idSelected)
+        print(ID)
         if idSelected == ID :
             
             categorie = request.form.get("categorie")
@@ -126,6 +137,67 @@ def editProd(id) :
             return redirect('/ourStock')
         return redirect('/ourStock')
     
+
+@app.route('/editAdmin/<int:id>', methods = ['POST'])
+def editAdmin(id) :
+    if request.method == 'POST':
+        idSelected = int(id)
+        admin = mongo.db.admin.find_one({"_id":idSelected})  #-- access to admin selected data
+        emailAdmin = admin["gmail"]                          #-- get admin email
+        gmail = request.form.get('gmail')                    #-- get email admin give us
+        ID = request.form.get("id")                          #-- get id admin give us
+        ID = int(ID)
+
+        if idSelected == ID and gmail == emailAdmin:
+            
+            nom = request.form.get("nom")
+            prenom = request.form.get('prenom')
+            password = request.form.get('password')
+
+            mongo.db.admin.update_one({"_id" : idSelected},
+            {
+                "$set": {
+                    "nom": nom,
+                    "prenom": prenom,
+                    "gmail" : gmail,
+                    "password": password                    
+                }
+            })
+
+            return redirect('/ourStock')
+        return redirect('/ourStock')
+
+@app.route('/addAdmin', methods = ['POST'])
+def addAdmin():
+
+    id  = getLastIdAdmin() + 1
+    nom = request.form.get("nom")
+    prenom = request.form.get('prenom')
+    gmail = request.form.get('gmail')
+    password = request.form.get('password')
+    
+    mongo.db.admin.insert_one({
+        "_id": id,
+        "nom": nom,
+        "prenom": prenom,
+        "gmail" : gmail,
+        "password": password
+    })
+
+    return redirect('/ourStock')
+
+@app.route('/supAdmin/<int:id>', methods = ['POST'])
+def delAdmin(id) :
+     if request.method == 'POST':
+        idSelected = int(id)
+        ID = request.form.get("idadmin")
+        email=request.form.get("emailadmin")
+        ID = int(ID)
+        admin = mongo.db.admin.find_one({"_id":idSelected})  #-- access to admin selected data
+        emailAdmin = admin["gmail"] 
+        if idSelected == ID and email==emailAdmin:
+           mongo.db.admin.delete_one({"_id": idSelected})
+        return redirect('/ourStock')
 
 if __name__ == "__main__" :
     app.run(debug=True)

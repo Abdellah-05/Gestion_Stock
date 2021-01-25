@@ -92,14 +92,14 @@
                         <td>{{produit['prix']}} DH</td>
                         <td>{{produit['Qte']}}</td>
                         <td>
-                            <a href="#editProduit" class="edit" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#{{produit['_id']}}" class="edit" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-                            <a href="#deleteproduit" class="delete" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#{{produit['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
                         </td>
 
                         <!-- Delete produit form -->
-                        <div id="deleteproduit" class="modal fade">
+                        <div id="{{produit['_id']}}" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="/supProduit/{{produit['_id']}}" method="POST">
@@ -113,7 +113,7 @@
                                             <div class="form-group">
                                                 <label>Vous devez entrer l'identifiant (#) du produit que vous souhaitez supprimer pour
                                                     plus de sécurité :</label>
-                                                <input type="text" name="idtype" class="form-control" required>
+                                                <input type="text" name="idpro" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -127,7 +127,7 @@
 
                         <!-- Edit produit form  hna fih problem gheda ndero meet lih-->
 
-                        <div id="editProduit" class="modal fade">
+                        <div id="{{produit['_id']}}" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="/editProduit/{{produit['_id']}}" method="POST">
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>categorie : </label>
-                                                <select class="form-select" aria-label="Default select example">
+                                                <select class="form-select" name="categorie" aria-label="Default select example">
                                                     <option value="Boissons">Boissons</option>
                                                     <option value="Produits de nettoyage">Produits de nettoyage</option>
                                                     <option value="Ustensiles ménagers">Ustensiles ménagers</option>
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>nom</label>
-                                                <input type="text" value="{{produit['nomProduit']}}" name="nom" class="form-control" required>
+                                                <input type="text" value="{{produit['nomProduit']}}" name="nomProduit" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>image</label>
@@ -285,14 +285,79 @@
                         <td>{{admin['nom']}}</td>
                         <td>{{admin['gmail']}}</td>
                         <td>
-                            {% if session['id'] == admin['id']: %}
-                            <a href="#editadmin" class="edit" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#b{{admin['_id']}}" class="edit" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-                            <a href="#deleteadmin" class="delete" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#C{{admin['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
-                            {% endif %}
                         </td>
                     </tr>
+
+                    <!-- Delete admin form -->
+
+                    <div id="C{{admin['_id']}}" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="/supAdmin/{{admin['_id']}}" method="POST">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Supprimer l'admin</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Vous devez entrer l'identifiant (#) d'admin que vous souhaitez supprimer pour
+                                            plus de sécurité :</label>
+                                        <input type="text" name="idadmin" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Vous devez entrer votre email: :</label>
+                                        <input type="email" name="emailadmin" class="form-control" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit admin form -->
+
+                    <div id="b{{admin['_id']}}" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="/editAdmin/{{admin['_id']}}" method="POST">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Modifier les informations de l'admin</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Vous devez entrer l'identifiant (_id) d'Admin que vous souhaitez modifier pour
+                                                plus de sécurité :</label>
+                                            <input type="number" name="id" class="form-control" min=""
+                                                max="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            <input type="text" value="{{admin['nom']}}" name="nom" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>prenom</label>
+                                            <input type="text" value="{{admin['prenom']}}" name="prenom" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>email</label>
+                                            <input type="text" value="{{admin['gmail']}}" name="gmail" class="form-control" required>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                                        <input type="submit" class="btn btn-success" value="Modifier">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </tbody>
             </table>
@@ -303,7 +368,7 @@
         <div id="addadmin" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="" method="POST">
+                    <form action="/addAdmin" method="POST">
                         <div class="modal-header">
                             <h4 class="modal-title">Ajouter un admin</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -319,7 +384,7 @@
                             </div>
                             <div class="form-group">
                                 <label>email</label>
-                                <input type="text" name="email" class="form-control" required>
+                                <input type="text" name="gmail" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>password</label>
@@ -335,66 +400,9 @@
             </div>
         </div>
 
-        <!-- Edit admin form -->
+        
 
-        <div id="editadmin" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="" method="POST">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modifier les informations de l'admin</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" name="nom" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>prenom</label>
-                                <input type="text" name="prenom" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>email</label>
-                                <input type="text" name="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>password</label>
-                                <input type="password" name="password" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                            <input type="submit" class="btn btn-success" value="Modifier">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Delete admin form -->
-
-        <div id="deleteadmin" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="" method="POST">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Supprimer l'admin</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Voulez-vous vraiment supprimer cet enregistrement?</p>
-                            <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                            <input type="submit" class="btn btn-danger" value="Supprimer">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 
     <!-- footer -->
