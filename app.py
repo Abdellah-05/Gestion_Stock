@@ -191,11 +191,11 @@ def delAdmin(id) :
      if request.method == 'POST':
         idSelected = int(id)
         ID = request.form.get("idadmin")
-        email=request.form.get("emailadmin")
+        password=request.form.get("password")
         ID = int(ID)
         admin = mongo.db.admin.find_one({"_id":idSelected})  #-- access to admin selected data
-        emailAdmin = admin["gmail"] 
-        if idSelected == ID and email==emailAdmin:
+        passwordAdmin = admin["password"] 
+        if idSelected == ID and password == passwordAdmin :
            mongo.db.admin.delete_one({"_id": idSelected})
         return redirect('/ourStock')
 
