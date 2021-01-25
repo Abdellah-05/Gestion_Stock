@@ -96,8 +96,36 @@ def delProd(id) :
     mongo.db.produit.delete_one({"_id": id})
     return redirect('/ourStock')
 
+@app.route('/editProduit/<int:id>', methods = ['POST'])
+def editProd(id) :
+    if request.method == 'POST':
+        idSelected = int(id)
+        ID = request.form.get("id")
+        ID = int(ID)
+        if idSelected == ID :
+            
+            categorie = request.form.get("categorie")
+            nomProduit = request.form.get('nomProduit')
+            img = request.form.get('img')
+            Qte = request.form.get('Qte')
+            prix = request.form.get('prix')
+            description = request.form.get('description')
 
+            mongo.db.produit.update_one({"_id" : idSelected},
+            {
+                "$set": {
+                    "categorie": categorie,
+                    "nomProduit": nomProduit,
+                    "img" : img,
+                    "Qte": Qte,
+                    "prix": prix,
+                    "description" : description
+                }
+            })
 
+            return redirect('/ourStock')
+        return redirect('/ourStock')
+    
 
 if __name__ == "__main__" :
     app.run(debug=True)

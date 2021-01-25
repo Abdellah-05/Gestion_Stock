@@ -84,7 +84,9 @@
                 <tbody>
                     {% for produit in produits %}
                     <tr>
-                        <td>{{produit['_id']}}</td>
+                        <td>
+                            {{produit['_id']}}                            
+                        </td>
                         <td>{{produit['categorie']}}</td>
                         <td>{{produit['nomProduit']}}</td>
                         <td>{{produit['prix']}} DH</td>
@@ -95,6 +97,66 @@
                             <a href="/supProduit/{{produit['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
                         </td>
+
+                        <!-- Edit type form  hna fih problem gheda ndero meet lih-->
+
+                        <div id="edittype" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="/editProduit/{{produit['_id']}}" method="POST">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Modifier le produit ({{produit['nomProduit']}})</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Vous devez entrer l'identifiant (_id) du produit que vous souhaitez modifier pour
+                                                    plus de sécurité :</label>
+                                                <input type="number" name="id" class="form-control" min=""
+                                                    max="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>categorie : </label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option value="Boissons">Boissons</option>
+                                                    <option value="Produits de nettoyage">Produits de nettoyage</option>
+                                                    <option value="Ustensiles ménagers">Ustensiles ménagers</option>
+                                                    <option value="Nourriture en boîte">Nourriture en boîte</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>nom</label>
+                                                <input type="text" value="{{produit['nomProduit']}}" name="nom" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>image</label>
+                                                <input type="text" name="img" value="{{produit['img']}}" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>prix</label>
+                                                <input type="number" name="prix" value="{{produit['prix']}}" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Qte</label>
+                                                <input type="number" name="Qte" value="{{produit['Qte']}}" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>description</label>
+                                                <input type="text" name="description" value="{{produit['description']}}"  class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                                            <input type="submit" class="btn btn-info" value="Modifier">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -126,7 +188,7 @@
                             </div>
                             <div class="form-group">
                                 <label>nom</label>
-                                <input type="text" name="nomProduit" class="form-control" required>
+                                <input type="text"  name="nomProduit" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>image</label>
@@ -155,63 +217,7 @@
             </div>
         </div>
 
-        <!-- Edit type form -->
-
-        <div id="edittype" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="" method="POST">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modifier ce produit</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Vous devez entrer l'identifiant (_id) du produit que vous souhaitez modifier pour
-                                    plus de sécurité :</label>
-                                <input type="number" name="idproduit" class="form-control" min=""
-                                    max="" required>
-                            </div>
-                            <div class="form-group">
-                                <label>categorie : </label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="Boissons">Boissons</option>
-                                    <option value="Produits de nettoyage">Produits de nettoyage</option>
-                                    <option value="Ustensiles ménagers">Ustensiles ménagers</option>
-                                    <option value="Nourriture en boîte">Nourriture en boîte</option>
-                                    
-                                  </select>
-                            </div>
-                            <div class="form-group">
-                                <label>nom</label>
-                                <input type="text" name="nom" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>image</label>
-                                <input type="text" name="img" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>prix</label>
-                                <input type="number" name="prix" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Qte</label>
-                                <input type="number" name="Qte" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>description</label>
-                                <input type="text" name="description" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                            <input type="submit" class="btn btn-info" value="Modifier">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
+        
 
         <!-- Delete type form -->
 

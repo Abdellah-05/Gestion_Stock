@@ -1,4 +1,3 @@
-/*Ceci est un projet scolaire pour mettre en place une base de données pour les projets de location de voitures*/
 
 // Sticky Header
 $(window).scroll(function () {
