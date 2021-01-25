@@ -40,6 +40,7 @@ def loginPost():
     if isEmpty(admin): 
         return redirect('/')
     else :
+        
         session["prenom"] = admin["prenom"]
         session["nom"] = admin["nom"]
         return redirect('/ourStock')
@@ -64,27 +65,35 @@ def ourStock():
 #----------------------------------------------------  add produit
 @app.route('/addproduit', methods = ['POST'])
 def addproduit():
-	if request.method == 'POST':
 
-	    id  = getLastIdProduct() + 1
-        categorie = request.form.get('categorie')
-        nomProduit = request.form.get('nomProduit')
-        img = request.form.get('img')
-        Qte = request.form.get('Qte')
-        prix = request.form.get('prix')
-        description = request.form.get('description')
+    id  = getLastIdProduct() + 1
+    categorie = request.form.get("categorie")
+    nomProduit = request.form.get('nomProduit')
+    img = request.form.get('img')
+    Qte = request.form.get('Qte')
+    prix = request.form.get('prix')
+    description = request.form.get('description')
+    print("------------------------------------------------")
+    print(id)
+    print(categorie)
+    mongo.db.produit.insert_one({
+        "_id": id,
+        "categorie": categorie,
+        "nomProduit": nomProduit,
+        "img" : img,
+        "Qte": Qte,
+        "prix": prix,
+        "description" : description
+    })
 
-        mongo.db.produit.insert_one({
-            "_id": id,
-            "categorie": categorie,
-            "nomProduit": nomProduit,
-            "img" : img,
-            "Qte": Qte,
-            "prix": prix,
-            "description" : description
-        })
+    return redirect('/ourStock')
 
-    redirect('/ourStock')
+
+@app.route('/supProduit/<int:id>')
+def delProd(id) :
+    id = int(id)
+    mongo.db.produit.delete_one({"_id": id})
+    return redirect('/ourStock')
 
 
 if __name__ == "__main__" :

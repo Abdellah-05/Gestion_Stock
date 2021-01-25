@@ -32,12 +32,10 @@
 
             <nav>
                 <ul>
-                    <li><a href=".sec00">clients</a></li>
-                    <li><a href=".sec01">RÉSERVATIONS</a></li>
-                    <li><a href=".sec02">locations</a></li>
-                    <li><a href=".sec03">véhicules</a></li>
-                    <li><a href=".sec04">types</a></li>
-                    <li><a href=".sec05">admins</a></li>
+                    
+                    
+                    <li><a href=".sec01">Produits</a></li>
+                    <li><a href=".sec02">admins</a></li>
                 </ul>
             </nav>
 
@@ -47,7 +45,7 @@
 
     <div class="hero">
 
-        <h1><span>bienvenue dans votre espace</span><br></h1>
+        <h1><span>bienvenue dans votre espace</span><br>{{nomAdmin}}</h1>
 
         <div class="mouse">
             <span></span>
@@ -57,7 +55,7 @@
 
     <div class="row content">
 
-        <h1 class="sec04">Gestion des produits</h1>
+        <h1 class="sec01">Gestion des produits</h1>
 
 
         <div class="table-wrapper">
@@ -94,7 +92,7 @@
                         <td>
                             <a href="#edittype" class="edit" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-                            <a href="#deletetype" class="delete" data-toggle="modal"><i class="material-icons"
+                            <a href="/supProduit/{{produit['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
                         </td>
                     </tr>
@@ -110,36 +108,43 @@
         <div id="addtype" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="" method="POST">
+                    <form action="/addproduit" method="POST">
                         <div class="modal-header">
-                            <h4 class="modal-title">Ajouter un type de véhicules</h4>
+                            <h4 class="modal-title">Ajouter un produit</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Marque</label>
-                                <input type="text" name="marque" class="form-control" required>
+                                <label>categorie : </label>
+                                <select name="categorie" class="form-select" aria-label="Default select example" >
+                                    <option value="Boissons">Boissons</option>
+                                    <option value="Produits de nettoyage">Produits de nettoyage</option>
+                                    <option value="Ustensiles ménagers">Ustensiles ménagers</option>
+                                    <option value="Nourriture en boîte">Nourriture en boîte</option>
+                                    
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Modèle</label>
-                                <input type="text" name="modele" class="form-control" required>
+                                <label>nom</label>
+                                <input type="text" name="nomProduit" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Carburant</label>
-                                <input type="text" name="carburant" class="form-control" required>
+                                <label>image</label>
+                                <input type="text" name="img" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Couleur</label>
-                                <input type="text" name="couleur" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Climatisation(oui/non)</label>
-                                <input type="text" name="climatisation" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prix par jour(MAD)</label>
+                                <label>prix</label>
                                 <input type="number" name="prix" class="form-control" required>
                             </div>
+                            <div class="form-group">
+                                <label>Qte</label>
+                                <input type="number" name="Qte" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>description</label>
+                                <input type="text" name="description" class="form-control" required>
+                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
@@ -157,39 +162,45 @@
                 <div class="modal-content">
                     <form action="" method="POST">
                         <div class="modal-header">
-                            <h4 class="modal-title">Modifier ce type</h4>
+                            <h4 class="modal-title">Modifier ce produit</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Vous devez entrer l'identifiant (#) du type que vous souhaitez modifier pour
+                                <label>Vous devez entrer l'identifiant (_id) du produit que vous souhaitez modifier pour
                                     plus de sécurité :</label>
-                                <input type="number" name="idtype" class="form-control" min=""
+                                <input type="number" name="idproduit" class="form-control" min=""
                                     max="" required>
                             </div>
                             <div class="form-group">
-                                <label>Marque</label>
-                                <input type="text" name="marque" class="form-control" required>
+                                <label>categorie : </label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="1">Boissons</option>
+                                    <option value="2">Produits de nettoyage</option>
+                                    <option value="3">Ustensiles ménagers</option>
+                                    <option value="3">Nourriture en boîte</option>
+                                    
+                                  </select>
                             </div>
                             <div class="form-group">
-                                <label>Modèle</label>
-                                <input type="text" name="modele" class="form-control" required>
+                                <label>nom</label>
+                                <input type="text" name="nom" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Carburant</label>
-                                <input type="text" name="carburant" class="form-control" required>
+                                <label>image</label>
+                                <input type="text" name="img" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Couleur</label>
-                                <input type="text" name="couleur" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Climatisation(oui/non)</label>
-                                <input type="text" name="climatisation" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prix par jour(MAD)</label>
+                                <label>prix</label>
                                 <input type="number" name="prix" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Qte</label>
+                                <input type="number" name="Qte" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>description</label>
+                                <input type="text" name="description" class="form-control" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -236,7 +247,7 @@
 
         <!-- admins table -->
 
-        <h1 class="sec05">Gestion des admins</h1>
+        <h1 class="sec02">Gestion des admins</h1>
 
 
         <div class="table-wrapper">
