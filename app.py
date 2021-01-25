@@ -50,6 +50,16 @@ def loginPost():
         session["nom"] = admin["nom"]
         return redirect('/ourStock')
  
+def produitFaibless():
+    prods = mongo.db.produit.find()
+    faibles = []
+    comment = ''
+    for e in prods:
+            if int(e['Qte']) <= 50:
+                x = int(e['Qte']) - 50
+                comment = str(e['nomProduit']) +'  '+ str(x)
+                faibles.append(comment)
+    return faibles
 
 @app.route('/logout', methods = ['GET'] )
 def logout():    
@@ -59,11 +69,16 @@ def logout():
 def ourStock():
     produits = mongo.db.produit.find()
     admins = mongo.db.admin.find()
+    
     if "nom" and "prenom" in session:
         nomAdmin = session["nom"] + " " + session["prenom"]
+        faibless = produitFaibless()
+        nbrNotifications = len(faibless)
     else:
         nomAdmin = "Admin"
-    return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin)
+    
+    return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
+
 
 
 
