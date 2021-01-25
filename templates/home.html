@@ -175,10 +175,10 @@
                             <div class="form-group">
                                 <label>categorie : </label>
                                 <select class="form-select" aria-label="Default select example">
-                                    <option value="1">Boissons</option>
-                                    <option value="2">Produits de nettoyage</option>
-                                    <option value="3">Ustensiles ménagers</option>
-                                    <option value="3">Nourriture en boîte</option>
+                                    <option value="Boissons">Boissons</option>
+                                    <option value="Produits de nettoyage">Produits de nettoyage</option>
+                                    <option value="Ustensiles ménagers">Ustensiles ménagers</option>
+                                    <option value="Nourriture en boîte">Nourriture en boîte</option>
                                     
                                   </select>
                             </div>
@@ -221,14 +221,14 @@
                 <div class="modal-content">
                     <form action="" method="POST">
                         <div class="modal-header">
-                            <h4 class="modal-title">Supprimer ce type de véhicules</h4>
+                            <h4 class="modal-title">Supprimer ce produit</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <p>Voulez-vous vraiment supprimer cet enregistrement?</p>
                             <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
                             <div class="form-group">
-                                <label>Vous devez entrer l'identifiant (#) du type que vous souhaitez supprimer pour
+                                <label>Vous devez entrer l'identifiant (#) du produit que vous souhaitez supprimer pour
                                     plus de sécurité :</label>
                                 <input type="text" name="idtype" class="form-control" required>
                             </div>
@@ -304,23 +304,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Nom d'utilisateur</label>
-                                <input type="text" name="username" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" name="firstname" class="form-control" required>
-                            </div>
-                            <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" name="lastname" class="form-control" required>
+                                <input type="text" name="nom" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control" required>
+                                <label>prenom</label>
+                                <input type="text" name="prenom" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Mot de passe</label>
+                                <label>email</label>
+                                <input type="text" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>password</label>
                                 <input type="password" name="password" class="form-control" required>
                             </div>
                         </div>
@@ -345,23 +341,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Nom d'utilisateur</label>
-                                <input type="text" name="username" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" name="firstname" class="form-control" required>
-                            </div>
-                            <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" name="lastname" class="form-control" required>
+                                <input type="text" name="nom" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control" required>
+                                <label>prenom</label>
+                                <input type="text" name="prenom" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Mot de passe</label>
+                                <label>email</label>
+                                <input type="text" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>password</label>
                                 <input type="password" name="password" class="form-control" required>
                             </div>
                         </div>

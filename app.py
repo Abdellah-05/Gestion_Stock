@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session , url_for
 #from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import datetime
 from flask_pymongo import PyMongo   # pip install Flask-PyMongo
@@ -62,6 +62,7 @@ def ourStock():
 
 
 
+
 #----------------------------------------------------  add produit
 @app.route('/addproduit', methods = ['POST'])
 def addproduit():
@@ -94,6 +95,8 @@ def delProd(id) :
     id = int(id)
     mongo.db.produit.delete_one({"_id": id})
     return redirect('/ourStock')
+
+
 
 
 if __name__ == "__main__" :
