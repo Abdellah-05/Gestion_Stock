@@ -32,10 +32,10 @@
 
             <nav>
                 <ul>
-                    
-                    
+                    <li><a href=".sec03">Notifications</a></li>
                     <li><a href=".sec01">Produits</a></li>
                     <li><a href=".sec02">admins</a></li>
+                    
                 </ul>
             </nav>
 
@@ -56,21 +56,34 @@
 
 
     <!-- Notifications -->
-
-    <div style=" width: 260px; position: absolute; right: 30px; margin-top: 100px;">
-        <div>
-            <h3 style="text-align: center; border-bottom: 3px solid red;"> <span class="glyphicon glyphicon-bell"></span> Notifications ({{nbrNotifications}}) <span class="glyphicon glyphicon-bullhorn"></span></h3> 
-        </div><br><br>
-        {% for msg in faibless %}
-            <div style="right: 0%; border: 1px solid red;  border-radius: 15px; box-shadow: 2px 2px 5px 2px rgb(153, 98, 98);">
-                <p>
-                    Faible Produit : <b>{{msg}}</b> 
-                </p>
-            </div><br>
-        {% endfor %}
-
+    <div class="sec03">
+        <h3 style="font-size:xx-large; text-align: center;color: blueviolet; border-bottom: 3px solid rgb(41, 0, 94);"> <span class="glyphicon glyphicon-bell"></span> Notifications ({{nbrNotifications}}) </h3> 
+    </div><br>
+    <div id="notif" class="sec03" >
+        <ul>
+        {% for e in faibless %}
+                <a class="list-group-item list-group-item-action" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large;">Faible Produit :</b> <b style="color: rgb(0, 0, 0); font-size: large;">_id: </b> <b style="color: darkblue; font-size: large;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large;"> NomProduit:</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;"> categorie: </b> <b style="color: darkblue; font-size: large;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;"> Qte: </b> <b style="color: darkblue; font-size: large;">{{e['Qte']}}</b></a>
+        {% endfor %}    
+        </ul>
     </div>
-
+        <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+        </div>
+  </div>
     <div class="row content">
 
         <h1 class="sec01">Gestion des produits</h1>
@@ -168,6 +181,8 @@
                                                     <option value="Produits de nettoyage">Produits de nettoyage</option>
                                                     <option value="Ustensiles ménagers">Ustensiles ménagers</option>
                                                     <option value="Nourriture en boîte">Nourriture en boîte</option>
+                                                    <option value="Nourriture en boîte">Denrées alimentaires</option>
+
                                                     
                                                 </select>
                                             </div>
@@ -229,6 +244,7 @@
                                     <option value="Produits de nettoyage">Produits de nettoyage</option>
                                     <option value="Ustensiles ménagers">Ustensiles ménagers</option>
                                     <option value="Nourriture en boîte">Nourriture en boîte</option>
+                                    <option value="Nourriture en boîte">Denrées alimentaires</option>
                                     
                                 </select>
                             </div>
