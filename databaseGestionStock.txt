@@ -33,12 +33,28 @@ db.produit.insert({_id : 12, "categorie": "Ustensiles ménagers", "nomProduit": 
 
 db.produit.insert({_id : 13, "categorie": "Nourriture en boîte", "nomProduit": "Poisson en boîte ", "img": "poisson.jpg", "Qte": 80, "prix": 15, "description": "La viande et le poisson apportent également du fer. Le poisson, notamment les poissons dits « gras » (saumon, maquereau, sardine, hareng…) nous apportent des matières grasses essentielles (comme les Oméga 3) dont le rôle protecteur sur le système cardio-vasculaire est reconnu. ».."})
 
+db.produit.insert({_id : 14, "categorie": "Denrées alimentaires", "nomProduit": "Fromage", "img": "fromage.jpg", "Qte": 47, "prix": 15, "description": "La vache qui rit est une marque commerciale désignant un mélange de fromages fondus de fabrication industrielle (autrefois dénommé « crème de gruyère »), de la société Fromageries Bel. Le premier nom de La vache qui rit était « Fromage moderne »..."})
+
+db.produit.insert({_id : 15, "categorie": "Denrées alimentaires", "nomProduit": "L'Huil de table", "img": "huil.jpg", "Qte": 24, "prix": 26, "description": "L'huile est une matière grasse à l'état liquide. Elle ne se mélange pas à l'eau. Les huiles utilisées en cuisine sont d'origine végétale et sont constituées d'acide gras. L'huile végétale est fabriquée à partir des graines de plantes riches en lipide..."})
+
+db.produit.insert({_id : 16, "categorie": "Denrées alimentaires", "nomProduit": "Café", "img": "cafe.jpg", "Qte": 33, "prix": 13, "description": "Nescafé es una marca de café instantáneo, de las más vendidas en el mundo, de la compañía Nestlé. El nombre es una conjunción de las palabras ' Nestlé ' y el producto pulverizado, el café. Nescafé fue introducido en Suiza el 1 de abril de 1938​ después de ser tratado por siete años por Max Morgenthaler y equipo..."})
+
+db.produit.insert({_id : 17, "categorie": "Denrées alimentaires", "nomProduit": "Couscous", "img": "couscous.jpg", "Qte": 12, "prix": 24, "description": "Le couscous est d'une part une semoule de blé dur préparée à l'huile d'olive et d'autre part, une spécialité culinaire issue de la cuisine berbère, à base de couscous, de légumes, d'épices, d'huile d'olive et de viande ou de poisson..."})
+
+db.produit.insert({_id : 18, "categorie": "Nourriture en boîte", "nomProduit": "Viande en boîte ", "img": "viandeBoit.jpg", "Qte": 50, "prix": 13, "description": "La viande est un aliment constitué des tissus musculaires de certains animaux, notamment les mammifères, les oiseaux, les reptiles, mais aussi certains poissons comme les requins. Le terme peut inclure le gras, les nerfs, et le sang associés à ces tissus, et dans une acception plus générale les abats et les os (moelles, cartilages servant aussi pour réaliser les préparations en gelées, etc.).."})
+
+db.produit.insert({_id : 19, "categorie": "Denrées alimentaires", "nomProduit": "Le Farine", "img": "farine.jpg", "Qte": 10, "prix": 62, "description": "La farine est une poudre obtenue en broyant et en moulant des céréales ou d'autres produits agricoles alimentaires solides, souvent des graines. La farine issue de céréales contenant du gluten, comme le blé, est l'un des principaux éléments de l'alimentation de certains peuples du monde.."})
+
+db.produit.insert({_id : 20, "categorie": "Denrées alimentaires", "nomProduit": "Le Sucre", "img": "sucre.jpg", "Qte": 28, "prix": 16, "description": "Le sucre est une substance de saveur douce extraite principalement de la canne à sucre et de la betterave sucrière. Le sucre est une molécule de saccharose (glucose + fructose). Il est également possible d'obtenir du sucre à partir d'autres plantes..."})
+
+db.produit.insert({_id : 21, "categorie": "Denrées alimentaires", "nomProduit": "Le Thé", "img": "the.jpg", "Qte": 42, "prix": 9, "description": "Le thé au Maroc est une boisson essentielle, le pays étant le premier importateur de thé vert au monde. L'infusion d'herbes est populaire dans le pays longtemps avant l'arrivée du thé au Maroc..."})
+
+db.produit.insert({_id : 22, "categorie": "Denrées alimentaires", "nomProduit": "Le Beurre", "img": "beurre.jpg", "Qte": 33, "prix": 8, "description": "Le beurre de Marrakech est une substance psychotrope à base de cannabis. Celle-ci est constituée de beurre dans lequel a été dissous le THC qui est la substance active du cannabis..."})
+
+db.produit.insert({_id : 23, "categorie": "Denrées alimentaires", "nomProduit": "Le Confiture", "img": "confiture.jpg", "Qte": 21, "prix": 8, "description": "La confiture est un mélange gélifié de sucre, de pulpe ou de purée d'une ou plusieurs espèces de fruits, obtenu, le plus souvent, en faisant réduire et confire, dans une bassine à confiture, certains fruits avec un poids équivalent de sucre..."})
 
 
-
-
-
-
+db.produit.find({_id : {$exists : true}}).forEach( function(obj){ obj._id = new NumberInt(obj._id ); db.produit.save(obj); })
 
 
 
