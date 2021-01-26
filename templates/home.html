@@ -62,7 +62,7 @@
     <div id="notif" class="sec03" >
         <ul>
         {% for e in faibless %}
-                <a class="list-group-item list-group-item-action" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large;">Faible Produit :</b> <b style="color: rgb(0, 0, 0); font-size: large;">_id: </b> <b style="color: darkblue; font-size: large;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large;"> NomProduit:</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;"> categorie: </b> <b style="color: darkblue; font-size: large;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;"> Qte: </b> <b style="color: darkblue; font-size: large;">{{e['Qte']}}</b></a>
+                <a class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;</b> <b style="color: rgb(0, 0, 0); font-size: large; float:left;">_id:&nbsp;</b> <b style="color: darkblue; font-size: large; float:left;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit:&nbsp;</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;float:left;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;float:left;"> &nbsp;&nbsp;categorie: </b> <b style="color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;float: left;"> Quantité actuelle : </b> <b style="color: darkblue; font-size: large; float: left;">{{e['Qte']}}</b> &nbsp;&nbsp; <b style="color: rgb(0, 0, 0); font-size: large; text-decoration: underline; float: left;">Taux de déclin : </b>  <b style="color: rgb(253, 67, 10); font-size: large;float: left;">{{e['Qte'] - 50}}</b></a>
         {% endfor %}    
         </ul>
     </div>
@@ -95,8 +95,8 @@
                     <div class="col-sm-6">
                         <h2>Nos <b>Produits</b></h2>
                     </div>
-                    <div class="col-sm-6">
-                        <a href="#" class="btn btn-success" data-toggle="modal"><i
+                    <div class="col-sm-6 ">
+                        <a href="#addproduit" class="btn btn-success cc" data-toggle="modal"><i
                                 class="material-icons">&#xE147;</i> <span>Ajouter un produit</span></a>
                     </div>
                 </div>
@@ -123,14 +123,14 @@
                         <td id="{{produit['prix']}}">{{produit['prix']}} DH</td>
                         <td>{{produit['Qte']}}</td>
                         <td>
-                            <a href="#" data-target="#{{produit['_id']}}" class="edit" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#m{{produit['_id']}}" class="edit" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-                            <a href="#" data-target="#{{produit['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
+                            <a href="#" data-target="#s{{produit['_id']}}" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
                         </td>
 
                         <!-- Delete produit form -->
-                        <div id="{{produit['_id']}}" class="modal fade">
+                        <div id="s{{produit['_id']}}" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="/supProduit/{{produit['_id']}}" method="POST">
@@ -158,7 +158,7 @@
 
                         <!-- Edit produit form  hna fih problem gheda ndero meet lih-->
 
-                        <div id="{{produit['_id']}}" class="modal fade">
+                        <div id="m{{produit['_id']}}" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="/editProduit/{{produit['_id']}}" method="POST">
@@ -228,7 +228,7 @@
         <!-- Add type form -->
 
 
-        <div id="addtype" class="modal fade">
+        <div id="addproduit" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="/addproduit" method="POST">
