@@ -127,7 +127,16 @@
     position: relative;
     padding: 0 2%;
   }
-  
+  #notif{
+    width: 90%;
+    height: 300px;
+    text-align: center;
+    border: solid black;
+    margin-top: 2%;
+    margin-left: 6%;
+    overflow-x: hidden;
+    overflow-y: initial;
+  }
   *, *:before, *:after{
     box-sizing: border-box;
     padding: 0;
@@ -175,7 +184,7 @@
     text-align: center;
     color: #fff;
     padding-top: 110px;
-    min-height: 500px;
+    min-height: 550px;
     letter-spacing: 2px;
     font-family: "Montserrat", sans-serif;
   }
@@ -235,6 +244,7 @@
       transform: translateY(20px);
     }
   }
+
   @keyframes scroll {
     0% {
       opacity: 1;

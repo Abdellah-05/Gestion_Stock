@@ -1,0 +1,18 @@
+<head>
+    <title>Produit</title>
+    <link rel="stylesheet" href="/static/css/showprod.css">
+</head>
+<div class="cont">
+    <div class="main">
+        <h1 >{{produit['nomProduit']}}({{produit['categorie']}})</h1>
+        <h4 >Quantité : {{produit['Qte']}}</h4>
+        <h4 >Prix : {{produit['prix']}}DH</h4>
+    </div>
+    <div class="imgpara">
+      <img class='img' src="/static/images/{{produit['img']}}" alt="">
+    </div>
+    <div style=" overflow-x: hidden; overflow-y:initial ;width: 55%; height: 50%; border: rgb(0, 0, 0) solid; padding-left:1% ;">
+      <p class="para">{{produit['description']}}</p>
+    </div>
+    
+</div>

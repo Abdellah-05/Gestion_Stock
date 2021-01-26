@@ -56,9 +56,7 @@ def produitFaibless():
     comment = ''
     for e in prods:
             if int(e['Qte']) <= 50:
-                x = int(e['Qte']) - 50
-                comment = str(e['nomProduit']) +'  '+ str(x)
-                faibles.append(comment)
+                faibles.append(e)
     return faibles
 
 @app.route('/logout', methods = ['GET'] )
@@ -80,7 +78,12 @@ def ourStock():
     return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
 
 
-
+@app.route('/produit/<int:id>', methods = ['GET'])
+def Prod(id) :
+    idSelected = int(id)
+    if request.method == 'GET':
+        prod=mongo.db.produit.find_one({"_id":idSelected})
+        return render_template("showprod.html",produit=prod)
 
 
 #----------------------------------------------------  add produit
