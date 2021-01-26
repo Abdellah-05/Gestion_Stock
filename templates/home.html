@@ -62,7 +62,13 @@
     <div id="notif" class="sec03" >
         <ul>
         {% for e in faibless %}
-                <a class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;</b> <b style="color: rgb(0, 0, 0); font-size: large; float:left;">_id:&nbsp;</b> <b style="color: darkblue; font-size: large; float:left;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit:&nbsp;</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;float:left;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;float:left;"> &nbsp;&nbsp;categorie: </b> <b style="color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;float: left;"> Quantité actuelle : </b> <b style="color: darkblue; font-size: large; float: left;">{{e['Qte']}}</b> &nbsp;&nbsp; <b style="color: rgb(0, 0, 0); font-size: large; text-decoration: underline; float: left;">Taux de déclin : </b>  <b style="color: rgb(253, 67, 10); font-size: large;float: left;">{{e['Qte'] - 50}}</b></a>
+                <a class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank"> 
+                    <b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;</b> 
+                    <b style="color: rgb(0, 0, 0); font-size: large; float:left;">_id:&nbsp;</b><b style="color: darkblue; font-size: large; float:left;">{{e['_id']}}</b>
+                    <b style="color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit:&nbsp;</b><b style="color: darkblue; font-size: large; text-decoration: underline;float:left;">{{e['nomProduit']}}</b>
+                    <b style="color:rgb(0, 0, 0); font-size: large;float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categorie: </b><b style="color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b>
+                    <b style="color: rgb(0, 0, 0); font-size: large;float: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantité actuelle : </b><b style="color: darkblue; font-size: large; float: left;">{{e['Qte']}}</b>&nbsp;&nbsp;
+                    <b style="color: rgb(0, 0, 0); font-size: large; float: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Taux de déclin : </b><b style="color: rgb(253, 67, 10); font-size: large;float: left;">{{e['Qte'] - 50}}</b></a>
         {% endfor %}    
         </ul>
     </div>
