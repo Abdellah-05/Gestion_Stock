@@ -44,6 +44,9 @@
     <div class="hero">
 
         <h1><span>bienvenue dans votre espace</span><br>{{nomAdmin}}</h1>
+        <div style="margin: auto; width: 140px; height: 170px;">
+            <img style="width: 100%;border-radius: 5px; height: 100%; position: relative;" src="/static/images/{{imgAdmin}}" alt="{{imgAdmin}}">
+        </div>
 
         <div class="mouse">
             <span></span>
@@ -59,8 +62,9 @@
     </div><br>
     <div id="notif" class="sec03" >
         <ul>
-        {% for e in faibless %}
-                <a class="list-group-item list-group-item-action" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large;">Faible Produit :</b> <b style="color: rgb(0, 0, 0); font-size: large;">_id: </b> <b style="color: darkblue; font-size: large;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large;"> NomProduit:</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;"> categorie: </b> <b style="color: darkblue; font-size: large;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;"></a>
+        {% for e in faibless %}                
+                <a class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank" ><b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;</b> <b style="color: rgb(0, 0, 0); font-size: large; float:left;">_id:&nbsp;</b> <b style="color: darkblue; font-size: large; float:left;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit:&nbsp;</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;float:left;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;float:left;"> &nbsp;&nbsp;categorie: </b> <b style="color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;float: left;"> Quantité actuelle : </b> <b style="color: darkblue; font-size: large; float: left;">{{e['Qte']}}</b> &nbsp;&nbsp; <b style="color: rgb(0, 0, 0); font-size: large; text-decoration: underline; float: left;">Taux de déclin : </b>  <b style="color: rgb(253, 67, 10); font-size: large;float: left;">{{e['Qte'] - 50}}</b></a>
+                
         {% endfor %}    
         </ul>
     </div>
@@ -82,6 +86,11 @@
         </div>
         </div>
   </div>
+
+    <div class="col-sm-2 "  style="position: absolute; margin-left: 70.3%; margin-top: 128px; ">
+        <a href="/statistiques" target="_blank" class="btn btn-success cc" data-toggle="modal"><span> <b style="font-size: 15px;">Statistiques</b> </span> <i class="fa fa-line-chart"></i> </a>
+    </div>
+
     <div class="row content">
 
         <h1 class="sec01">Gestion des produits</h1>
@@ -93,10 +102,11 @@
                     <div class="col-sm-6">
                         <h2>Nos <b>Produits</b></h2>
                     </div>
-                    <div class="col-sm-6">
-                        <a href="#" class="btn btn-success" data-toggle="modal"><i
+                    <div class="col-sm-6 ">
+                        <a href="#addproduit" class="btn btn-success cc" data-toggle="modal"><i
                                 class="material-icons">&#xE147;</i> <span>Ajouter un produit</span></a>
                     </div>
+                    
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -467,6 +477,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/home.js"></script>
+    <script type="text/javascript" src="produit.json"></script>
 
 </body>
 
