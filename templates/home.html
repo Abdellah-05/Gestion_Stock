@@ -32,8 +32,10 @@
 
             <nav>
                 <ul>
+                    <li><a href=".sec03">Notifications</a></li>
                     <li><a href=".sec01">Produits</a></li>
                     <li><a href=".sec02">admins</a></li>
+                    
                 </ul>
             </nav>
 
@@ -54,10 +56,10 @@
 
 
     <!-- Notifications -->
-    <div>
+    <div class="sec03">
         <h3 style="font-size:xx-large; text-align: center;color: blueviolet; border-bottom: 3px solid rgb(41, 0, 94);"> <span class="glyphicon glyphicon-bell"></span> Notifications ({{nbrNotifications}}) </h3> 
     </div><br>
-    <div id="notif" >
+    <div id="notif" class="sec03" >
         <ul>
         {% for e in faibless %}
                 <a class="list-group-item list-group-item-action" href="produit/{{e['_id']}}" target="_blank"> <b style="color: rgb(252, 143, 143); font-size: large;">Faible Produit :</b> <b style="color: rgb(0, 0, 0); font-size: large;">_id: </b> <b style="color: darkblue; font-size: large;">{{e['_id']}} </b>, <b style="color:rgb(0, 0, 0); font-size: large;"> NomProduit:</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;">{{e['nomProduit']}}</b> , <b style="color:rgb(0, 0, 0); font-size: large;"> categorie: </b> <b style="color: darkblue; font-size: large;">{{e['categorie']}}</b> , <b style="color: rgb(0, 0, 0); font-size: large;"> Qte: </b> <b style="color: darkblue; font-size: large;">{{e['Qte']}}</b></a>
