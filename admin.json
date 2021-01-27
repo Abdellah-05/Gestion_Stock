@@ -3,11 +3,13 @@
   "nom": "ELAAROUB",
   "prenom": "Abdellah",
   "gmail": "abdouelaaroub@gmail.com",
-  "password": "Abdou_IDSD2"
+  "password": "Abdou_IDSD2",
+  "img": "abdou.jpeg"
 },{
   "_id": 2,
   "nom": "DAMOU",
   "prenom": "Walid",
   "gmail": "walid.damou.2015@gmail.com",
-  "password": "Walid_IDSD2"
+  "password": "Walid_IDSD2",
+  "img": "walid.jpeg"
 }]

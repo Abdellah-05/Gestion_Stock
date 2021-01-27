@@ -48,12 +48,13 @@ def loginPost():
         
         session["prenom"] = admin["prenom"]
         session["nom"] = admin["nom"]
+        session["img"] = admin["img"]
         return redirect('/ourStock')
  
 def produitFaibless():
     prods = mongo.db.produit.find()
     faibles = []
-    comment = ''
+    #comment = ''
     for e in prods:
             if int(e['Qte']) <= 50:
                 faibles.append(e)
@@ -70,12 +71,13 @@ def ourStock():
     
     if "nom" and "prenom" in session:
         nomAdmin = session["nom"] + " " + session["prenom"]
+        imgAdmin = session["img"]
         faibless = produitFaibless()
         nbrNotifications = len(faibless)
     else:
         nomAdmin = "Admin"
     
-    return render_template('home.html', produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
+    return render_template('home.html',imgAdmin = imgAdmin, produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
 
 
 @app.route('/produit/<int:id>', methods = ['GET'])
@@ -216,6 +218,30 @@ def delAdmin(id) :
         if idSelected == ID and password == passwordAdmin :
            mongo.db.admin.delete_one({"_id": idSelected})
         return redirect('/ourStock')
+
+@app.route('/statistiques')
+def statistique() :
+    a = '{"Task":"Hours per Day","Work":11,"Eat":2,"Commute":2,"Watch TV":2,"Sleep":7}'
+
+    coll = mongo.db.produit.find()
+    categories = []
+    nbrExistance = []
+    b="""'{"Task":"Hours per Day","""
+    for c in coll:
+        if c["categorie"] not in categories:
+            categories.append(c["categorie"] )
+            
+    for e in categories:
+        nbrExistance.append(mongo.db.produit.find({"categorie":e}).count())
+
+    for i in range(len(categories)):
+        b=b+'"'+categories[i]+'":'+str(nbrExistance[i])+','
+    b=b[:-1]+"}'"
+    print(b)
+    return render_template("statistique.html", a = a, b = b)       
+
+
+
 
 if __name__ == "__main__" :
     app.run(debug=True)
