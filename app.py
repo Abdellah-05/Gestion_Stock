@@ -238,7 +238,9 @@ def statistique() :
         a = a +'"'+categories[i]+'":'+str(nbrExistance[i])+',' 
     b=b[:-1]+"}'"
     a=a[:-1]+"}'"    
-    return render_template("statistique.html", a = a, b = b)       
+    nomAdmin = session["nom"] + " " + session["prenom"]
+    imgAdmin = session["img"] 
+    return render_template("statistique.html", a = a, b = b, nomAdmin = nomAdmin, imgAdmin = imgAdmin)    
 
 
 
