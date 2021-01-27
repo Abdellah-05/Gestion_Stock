@@ -64,6 +64,7 @@ def produitFaibless():
 def logout():    
     return render_template('login.html')
 
+
 @app.route('/ourStock', methods = ['GET'] )
 def ourStock():
     produits = mongo.db.produit.find()
@@ -77,7 +78,27 @@ def ourStock():
     else:
         nomAdmin = "Admin"
     
-    return render_template('home.html',imgAdmin = imgAdmin, produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
+    coll = mongo.db.produit.find()
+    categories = []
+    nbrExistance = []
+    a = 
+    b="""'{"Move":"Percentage","""
+    for c in coll:
+        if c["categorie"] not in categories:
+            categories.append(c["categorie"] )
+            
+    for e in categories:
+        nbrExistance.append(mongo.db.produit.find({"categorie":e}).count())
+
+    for i in range(len(categories)):
+        b=b+'"'+categories[i]+'":'+str(nbrExistance[i])+','
+
+    b=b[:-1]+"}'"
+    
+    print(b)
+
+    
+    return render_template('home.html',b=b, imgAdmin = imgAdmin, produits = produits, admins = admins, nomAdmin = nomAdmin, faibless = faibless, nbrNotifications = nbrNotifications)
 
 
 @app.route('/produit/<int:id>', methods = ['GET'])
@@ -219,26 +240,7 @@ def delAdmin(id) :
            mongo.db.admin.delete_one({"_id": idSelected})
         return redirect('/ourStock')
 
-@app.route('/statistiques')
-def statistique() :
-    a = '{"Task":"Hours per Day","Work":11,"Eat":2,"Commute":2,"Watch TV":2,"Sleep":7}'
-
-    coll = mongo.db.produit.find()
-    categories = []
-    nbrExistance = []
-    b="""'{"Task":"Hours per Day","""
-    for c in coll:
-        if c["categorie"] not in categories:
-            categories.append(c["categorie"] )
-            
-    for e in categories:
-        nbrExistance.append(mongo.db.produit.find({"categorie":e}).count())
-
-    for i in range(len(categories)):
-        b=b+'"'+categories[i]+'":'+str(nbrExistance[i])+','
-    b=b[:-1]+"}'"
-    print(b)
-    return render_template("statistique.html", a = a, b = b)       
+    
 
 
 
