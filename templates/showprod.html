@@ -1,19 +1,72 @@
+
+
+
 <head>
     <title>Produit</title>
     <link rel="stylesheet" href="/static/css/showprod.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/statistique.css">
+    <link rel="icon" type="image/png" href="/static/images/favicon.jpg">
 </head>
+
+<header class="main_h">
+
+  <div class="row">
+      <a class="logout" href="/logout"><i class="fa fa-sign-out"></i></i></a>
+
+      <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+
+      <nav>
+          <ul>
+              <li><a href=".sec03">Notifications</a></li>
+              <li><a href=".sec01">Produits</a></li>
+              <li><a href=".sec02">admins</a></li>
+              
+          </ul>
+      </nav>
+
+  </div>
+
+</header>
+
+<div class="hero">
+
+  <h1><span>bienvenue dans l'espace Information produit</span><br>{{nomAdmin}}</h1>
+  <div style="margin: auto; width: 140px; height: 170px;">
+      <img style="width: 100%;border-radius: 5px; height: 100%; position: relative;" src="/static/images/{{imgAdmin}}" alt="">
+  </div>
+
+  <div class="mouse">
+      <span></span>
+  </div>
+
+</div>
+
+
+
 <div class="cont">
     <div class="main">
-        <h1 >{{produit['nomProduit']}}({{produit['categorie']}})</h1>
-        <h4 >Quantité : {{produit['Qte']}}</h4>
-        <h4 >Prix : {{produit['prix']}}DH</h4>
+        <h1 >{{produit['nomProduit']}} &nbsp;&nbsp;( {{produit['categorie']}} )</h1>
+        <h3 >Quantité : {{produit['Qte']}}</h3>
+        <h3 >Prix : {{produit['prix']}}DH</h3>
     </div>
     <div class="imgpara">
       <img class='img' src="/static/images/{{produit['img']}}" alt="">
     </div>
-    <div style=" overflow-x: hidden; overflow-y:initial ;width: 55%; height: 50%; border: rgb(0, 0, 0) solid; padding-left:1% ;">
+    <div style=" overflow-x: hidden; overflow-y:initial ;width: 55%; height: 50%; padding-left:1% ;">
       <p class="para">{{produit['description']}}</p>
     </div>
     
 </div>
+
+
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+  
+</body>
  

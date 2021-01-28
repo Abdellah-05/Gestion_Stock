@@ -85,7 +85,9 @@ def Prod(id) :
     idSelected = int(id)
     if request.method == 'GET':
         prod=mongo.db.produit.find_one({"_id":idSelected})
-        return render_template("showprod.html",produit=prod)
+        nomAdmin = session["nom"] + " " + session["prenom"]
+        imgAdmin = session["img"] 
+        return render_template("showprod.html",produit=prod, nomAdmin = nomAdmin, imgAdmin = imgAdmin)
 
 
 #----------------------------------------------------  add produit

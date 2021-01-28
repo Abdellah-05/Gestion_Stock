@@ -99,12 +99,25 @@
 
     <!-- Notifications -->
     <div class="sec03">
-        <h3 style="font-size:xx-large; text-align: center;color: blueviolet; border-bottom: 3px solid rgb(41, 0, 94);"> <span class="glyphicon glyphicon-bell"></span> Notifications ({{nbrNotifications}}) </h3> 
+        <h3 style="font-size:xx-large; text-align: center;color: blueviolet; margin-top: 50px;"> <span class="glyphicon glyphicon-bell"></span><b>Notifications ({{nbrNotifications}}) </b> </h3> 
     </div><br>
     <div id="notif" class="sec03" >
-        <ul>
+        <ul style="position: relative;">
         {% for e in faibless %}                
-                <a class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank" ><b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;</b> <b style="color: rgb(0, 0, 0); font-size: large; float:left;">_id:&nbsp;</b> <b style="color: darkblue; font-size: large; float:left;">{{e['_id']}} </b><b style="color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit:&nbsp;</b>  <b style="color: darkblue; font-size: large; text-decoration: underline;float:left;">{{e['nomProduit']}}</b><b style="color:rgb(0, 0, 0); font-size: large;float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categorie: </b> <b style="color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b><b style="color: rgb(0, 0, 0); font-size: large;float: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantité actuelle : </b> <b style="color: darkblue; font-size: large; float: left;">{{e['Qte']}}</b> &nbsp;&nbsp; <b style="color: rgb(0, 0, 0); font-size: large; float: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Taux de déclin : </b>  <b style="color: rgb(253, 67, 10); font-size: large;float: left;">{{e['Qte'] - 50}}</b></a>
+                <a style="position: relative;" class="list-group-item list-group-item-action btn" href="produit/{{e['_id']}}" target="_blank" >
+                    
+                    <b style="color: rgb(252, 143, 143); font-size: large; float:left;">Faible Produit :&nbsp;&nbsp;&nbsp;&nbsp;</b> 
+                    <b style="color: rgb(0, 0, 0); font-size: large; float:left;">Numéro :&nbsp;&nbsp;</b> 
+                    <b style="color: darkblue; font-size: large; float:left;">{{e['_id']}} </b>
+                    <b style="position: absolute; left: 250px; color:rgb(0, 0, 0); font-size: large; float:left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NomProduit :&nbsp;</b>  
+                    <b style="position: absolute; left: 417px;color: darkblue; font-size: large; float:left;">&nbsp;{{e['nomProduit']}}</b>
+                    <b style="position: absolute; right: 700px; color:rgb(0, 0, 0); font-size: large;float:left;">  categorie  : &nbsp;&nbsp;&nbsp;</b> 
+                    <b style="position: absolute; left: 685px;color: darkblue; font-size: large;float: left;">{{e['categorie']}}</b>
+                    <b style="position: absolute; right: 330px; color: rgb(0, 0, 0); font-size: large;float: left;"> Quantité actuelle : </b> 
+                    <b style="position: absolute; right: 290px;color: darkblue; font-size: large; float: left;">&nbsp;&nbsp;&nbsp{{e['Qte']}}</b> &nbsp;&nbsp; 
+                    <b style="position: absolute; right: 120px; color: rgb(0, 0, 0); font-size: large; float: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Taux de déclin : </b>
+                    <b style="position: absolute; right: 20px; color: rgb(253, 67, 10); font-size: 19px;float: left;">&nbsp;&nbsp;&nbsp;&nbsp;{{e['Qte'] - 50}} &nbsp;  <i class="fa fa-line-chart"></i>  </b>
+                </a>
                 
         {% endfor %}    
         </ul>

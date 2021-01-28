@@ -128,14 +128,14 @@
     padding: 0 2%;
   }
   #notif{
-    width: 90%;
+    width: 70%;
     height: 300px;
     text-align: center;
-    border: solid black;
     margin-top: 2%;
-    margin-left: 6%;
+    margin: auto;
     overflow-x: hidden;
     overflow-y: initial;
+    box-shadow: 2px 2px 6px 2px rgb(211, 160, 203);
     
   }
   
