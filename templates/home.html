@@ -117,7 +117,7 @@
                     <b style="position: absolute; right: 330px; color: rgb(0, 0, 0); font-size: large;float: left;"> Quantité actuelle : </b> 
                     <b style="position: absolute; right: 290px;color: darkblue; font-size: large; float: left;">&nbsp;&nbsp;&nbsp{{e['Qte']}}</b> &nbsp;&nbsp; 
                     <b style="position: absolute; right: 120px; color: rgb(0, 0, 0); font-size: large; float: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Taux de déclin : </b>
-                    <b style="position: absolute; right: 20px; color: rgb(253, 67, 10); font-size: 19px;float: left;">&nbsp;&nbsp;&nbsp;&nbsp;{{e['Qte'] - 50}} &nbsp;  <i class="fa fa-line-chart"></i>  </b>
+                    <b style="position: absolute; right: 20px; color: rgb(253, 67, 10); font-size: 19px;float: left;">&nbsp;&nbsp;&nbsp;&nbsp;{{(e['Qte'])|int - 50}} &nbsp;  <i class="fa fa-line-chart"></i>  </b>
                 </a>
                 
         {% endfor %}    
