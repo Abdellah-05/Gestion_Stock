@@ -53,7 +53,7 @@ db.produit.insert({_id : 22, "categorie": "Denrées alimentaires", "nomProduit":
 
 db.produit.insert({_id : 23, "categorie": "Denrées alimentaires", "nomProduit": "Le Confiture", "img": "confiture.jpg", "Qte": 21, "prix": 8, "description": "La confiture est un mélange gélifié de sucre, de pulpe ou de purée d'une ou plusieurs espèces de fruits, obtenu, le plus souvent, en faisant réduire et confire, dans une bassine à confiture, certains fruits avec un poids équivalent de sucre..."})
 
-
+-- convert id double to int
 db.produit.find({_id : {$exists : true}}).forEach( function(obj){ obj._id = new NumberInt(obj._id ); db.produit.save(obj); })
 
 
